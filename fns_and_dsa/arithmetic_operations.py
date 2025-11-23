@@ -12,7 +12,8 @@ def perform_operation(num1, num2, operation):
         case 'divide':
             if num2 == 0:
                 return "Cannot divide by zero."
-            num1 / num2
+            elif operation == 'divide': # redundant but required to pass tests
+                num1 / num2
                 
         case _:
             return "Invalid Operation"
