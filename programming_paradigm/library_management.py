@@ -1,4 +1,4 @@
-class Book():
+class Book:
     """
     Represents a book in the library.
 
@@ -57,7 +57,7 @@ class Library:
 
     def list_available_books(self):
         """Prints the title and author of all available books."""
-        
+
         for book in self._books:
             if book.is_available():                
                 print(f"'{book.title}' by {book.author} is available.")
