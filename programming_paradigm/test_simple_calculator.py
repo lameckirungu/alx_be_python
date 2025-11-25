@@ -26,7 +26,7 @@ class TestSimpleCalculator(unittest.TestCase):
 
     def test_division(self):
         """Test the division method, including float and division by zero."""
-        self.assertAlmostEqual(self.calc.divide(10, 5), 2.0, places=4)
+        self.assertEqual(self.calc.divide(10, 5), 2.0, places=4)
         self.assertAlmostEqual(self.calc.divide(5, 9), 5/9, places=4)
         # Test division by zero: returns None
         self.assertIsNone(self.calc.divide(5, 0))
