@@ -1,4 +1,4 @@
-class BankAccount():
+class BankAccount:
     """
     A Simple class to represent a bank account with deposit,
     withdraw, and display balance functionality.
