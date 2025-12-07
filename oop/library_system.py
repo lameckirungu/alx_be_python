@@ -1,3 +1,5 @@
+import sys
+
 class Book:
     def __init__(self, title: str, author: str):
         self.title = title
@@ -30,6 +32,13 @@ class PrintBook(Book):
 class Library: 
     def __init__(self):
         self.books = []
+
+    def __str__(self) -> str:
+        if not self.books:
+            return "Library is empty"
+        
+        details = "\n".join(book.get_details() for book in self.books)
+        return f"Library ({len(self.books)} books:\n {details})"
  
     def add_book(self, book : Book):
         # Checks if the object is an instance of Book or any derived class
