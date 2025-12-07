@@ -4,7 +4,6 @@
 
 # Project Objectives
  - Describe the functionalities of constructors (`__init__`), desctructors (`__del__`), and common magic methods (`__str__`, `__repr__`) in Python classes.
-
  - Implement inheritance to create new classes that inherit properties and methods from existing classes.
  - Utilizing composition as an alternative to inheritance for building complex objects.
  - Explain the concepts of single, multiple, and multilevel inheritance in Python.
@@ -29,6 +28,33 @@
             - *Destructor(`__del__`)*: Prints `"Deleting (title of the book)"` upon object deletion.
             - *String Representation(`__str__`)*: Returns a string in the format `"(title) by (author), published in (year)"`.
             - *Official Representation(`__repr__`):* Returns a string that would recreate the <span style="color:red;">`Book`</span> instance: `f"Book('{self.title}', '{self.author}', '{self.year}')"`.
+### `0-main.py` Test file
+```python
+from book_class import Book
+
+def main():
+    # Creating an instance of Book
+    my_book = Book("1984", "George Orwell", 1949)
+
+    # Demonstrating the __str__ method
+    print(my_book)  # Expected to use __str__
+
+    # Demonstrating the __repr__ method
+    print(repr(my_book))  # Expected to use __repr__
+
+    # Deleting a book instance to trigger __del__
+    del my_book
+
+if __name__ == "__main__":
+    main()
+```
+#### *Expected Output*
+```md
+1984 by George Orwell, published in 1949
+Book('1984', 'George Orwell', 1949)
+Deleting 1984
+```
+---
 
 1. `library_system.py`
 - **Objective:** Deepen your understanding of inheritance and composition in Python by creating a system that models a library with different types of books.
@@ -78,4 +104,76 @@ if __name__ == "__main__":
 Book: Pride and Prejudice by Jane Austen
 EBook: Snow Crash by Neal Stephenson, File Size: 500KB
 PrintBook: The Catcher in the Rye by J.D. Salinger, Page Count: 234
+```
+---
+2. `polymorphism_demo.py`: Exploring Polymorphism and Method Overriding
+- *Objective:* Enhance your understnading of polymorphism in Python by creating a set of classes that demonstrate method overriding and polymorphic behavior.
+- *Task Description:* 
+    - Define a base class `Shape`.
+        - Method: `area(self)`, which simply raises a `NotImplementedError`, indicating that the derived classes need to override this method.
+    - Derived class `Rectangle`:
+        - Inherits from `Shape`.
+        - Attributes:
+            - `length` and `width`.
+        - Overrides the `area()` method to calculate the rectangle's area using the formula: *length x width*.
+    - Derived Class `Circle`:
+        - Inherits from `Shape`.
+        - Attributes: `radius`
+        - Overrides the `area()` method to calculate the circle's area using the formula: *π × radius² (Use `math.pi for π`)
+
+### 2-main.py for Testing
+```python
+from polymorphism_demo import Shape, Rectangle, Circle
+import math
+
+def main():
+    shapes = [
+        Rectangle(10, 5),
+        Circle(7)
+    ]
+
+    for shape in shapes:
+        print(f"The area of the {shape.__class__.__name__} is: {shape.area()}")
+
+if __name__ == "__main__":
+    main()
+```
+
+#### *Expected Output*
+```md
+The area of the Rectangle is: 50
+The area of the Circle is: 153.93804002589985
+```
+---
+3. `class_static_methods_demo.py`: Distinguishing Between Class Methods and Static Methods
+- *Objective:* Solidify your understanding of class methods and static methods in Python by implementing examples of each in a class, demonstrating their usage and differences
+- *Task Description:*
+    - Define a class `Calculator` with class and static method:
+        - `add(a, b)`: Static method. Returns the sum of two numbers.
+        - `multiply(cls, a, b)`: Class method. Returns the product of two numbers. Use `@classmethod` decorator and ensure it prints a class attribute named `calculation_type` before performing the multiplication.
+    - Class Attributes:
+        - Define a class attribute `calculation_type` with a value of `Arithmetic Operations` that the `multiply` class method will reference.
+
+### `3-main.py` for Testing
+```python
+from class_static_methods_demo import Calculator
+
+def main():
+    # Using the static method
+    sum_result = Calculator.add(10, 5)
+    print(f"The sum is: {sum_result}")
+
+    # Using the class method
+    product_result = Calculator.multiply(10, 5)
+    print(f"The product is: {product_result}")
+
+if __name__ == "__main__":
+    main()
+```
+
+#### *Expected Output*
+```md
+The sum is: 15
+Calculation type: Arithmetic Operations
+The product is: 50
 ```
